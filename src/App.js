@@ -1,13 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import Toolbar from '@material-ui/core/Toolbar';
-// or
+import NavBar from "./components/NavBar";
+
+
 
 const App = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <NavBar />
+    </>
   )
 }
 
