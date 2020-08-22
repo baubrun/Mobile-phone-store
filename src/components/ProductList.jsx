@@ -10,12 +10,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 
 const ProductList = () => {
-    const [products, setProducts] = useState()
     
     return (
         <div>
             <Title title="PHONES" />
-            <h3>ProductList</h3>
             <Product />
         </div>
     )
