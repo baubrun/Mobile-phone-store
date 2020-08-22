@@ -7,8 +7,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getProductDetail, productsState } from "../app/productsSlice";
@@ -24,13 +25,9 @@ const useStyles = makeStyles({
   cardStyle: {
     margin: "2em",
   },
-  // iconColor: {
-  //   // color: "#fff",
-  //   fontSize: "2em",
-  //   "&:hover": {
-  //     color: "primary",
-  //   },
-  // },
+  inCart: {
+    marginLeft: "auto",
+  },
 });
 
 const Product = (props) => {
@@ -44,7 +41,6 @@ const Product = (props) => {
   //   setItems(products)
   // }, [products])
 
-
   return (
     <Card className={clsx(classes.root, classes.cardStyle)}>
       <CardActionArea>
@@ -53,23 +49,28 @@ const Product = (props) => {
           image={require(`../images/${props.item.img}`)}
         />
       </CardActionArea>
+      {props.item.inCart && (
+        <CardActions className={classes.inCart}>
+          <Button>
+            <IconButton color="primary">
+              <RiShoppingCartFill />
+            </IconButton>
+          </Button>
+          </CardActions>
+      )}
       <CardActions>
         <Typography>{props.item.title}</Typography>
-
-        <Button 
-        color="primary" 
-        disabled={props.item.inCart}
-        // onClick={() => props.addToCart(props.id)}
-        onClick={() => props.addToCart(props.item.id)}
-        variant="contained" 
+        <Button
+          color="primary"
+          disabled={props.item.inCart}
+          onClick={() => props.addToCart(props.item.id)}
+          variant="contained"
         >
-          <IconButton  className={classes.iconColor}
-          >
-            <RiMoneyDollarCircleLine color="white"/>
+          <IconButton className={classes.iconColor}>
+            <RiMoneyDollarCircleLine color="white" />
           </IconButton>
-          <Typography >{props.item.price}</Typography>
+          <Typography>{props.item.price}</Typography>
         </Button>
-
       </CardActions>
     </Card>
   );

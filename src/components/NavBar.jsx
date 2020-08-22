@@ -8,12 +8,13 @@ import { makeStyles, fade } from "@material-ui/core/styles";
 import Badge from '@material-ui/core/Badge';
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../mui-config";
-
 import { RiShoppingCartFill } from "react-icons/ri";
 import { MdSmartphone } from "react-icons/md";
 import { Link } from "react-router-dom";
-
 import clsx from "clsx";
+import { cartState } from "../app/cartSlice";
+import {useSelector, useDispatch} from "react-redux"
+
 
 const useStyles = makeStyles({
   menuItemColor: {
@@ -47,6 +48,8 @@ const useStyles = makeStyles({
 
 const NavBar = () => {
   const classes = useStyles();
+  const {items} = useSelector(cartState)
+
 
   return (
     <div className={classes.root}>
@@ -76,7 +79,7 @@ const NavBar = () => {
           <Link to="/cart">
           <IconButton
           className={clsx(classes.navItem, classes.menuItemColor )}>
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={items.length} color="secondary">
             <RiShoppingCartFill />
             </Badge>
           </IconButton> 

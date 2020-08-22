@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
 import Title from "./Title";
-
 import Grid from "@material-ui/core/Grid";
-
 import { data } from "../data";
 import {useSelector, useDispatch} from "react-redux"
-
 import {getProducts, productsState} from "../app/productsSlice"
 import { addCartItem,  } from "../app/cartSlice";
 
