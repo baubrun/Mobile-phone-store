@@ -29,12 +29,3 @@ export const theme = createMuiTheme({
 });
 
 
-export const titleStyle = makeStyles({
-    sectionTitle: {
-        fontFamily: [
-            'Permanent Marker',
-            'cursive',
-        ].join(','),
-    }
-})
-

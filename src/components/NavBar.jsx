@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   },
   productsLink: {
     marginLeft: theme.spacing(2),
-    width: "50%",
+    width: "80%",
   },
 
 });
@@ -66,7 +66,7 @@ const NavBar = () => {
               classes.menuButton,
               classes.menuItemColor,
               classes.navLinks,
-              classes.productsLink
+              classes.productsLink,
             )}
             variant="h5"
           >
