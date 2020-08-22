@@ -13,6 +13,7 @@ import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetail, productsState } from "../app/productsSlice";
 import styled from "styled-components";
+import { addCartItem, getCart, cartState } from "../app/cartSlice";
 
 const useStyles = makeStyles({
   root: {
@@ -26,20 +27,23 @@ const useStyles = makeStyles({
     margin: "2em",
   },
   inCart: {
-    // backgroundColor: "red",
+    visibility: "visible",
+  },
+  notInCart: {
+    visibility: "hidden",
   },
 });
 
 const Product = (props) => {
   const classes = useStyles();
-  const dispatch = useDispatch()
-  // const {products} = useSelector(productsState)
-  const [item, setItem] = useState([])
+  // const dispatch = useDispatch()
+  const { items } = useSelector(cartState);
+  // const [item, setItem] = useState([])
 
-  // useEffect(() => {
-  //   dispatch(getProductDetail(2))
-  //   setItems(products)
-  // }, [products])
+  const isAddedToCart = (id) => {
+    const found = items.includes((i) => i.id === id);
+    return found;
+  };
 
   return (
     <Card className={clsx(classes.root, classes.cardStyle)}>
@@ -49,18 +53,20 @@ const Product = (props) => {
           image={require(`../images/${props.item.img}`)}
         />
       </CardActionArea>
-      {props.item.inCart && (
-        <CardActions>
-            <IconButton color="primary">
-              <RiShoppingCartFill />
-            </IconButton>
-        </CardActions>
-      )}
+      <CardActions
+        className={clsx(
+          isAddedToCart(props.item.id) ? classes.inCart : classes.notInCart
+        )}
+      >
+        <IconButton color="primary">
+          <RiShoppingCartFill />
+        </IconButton>
+      </CardActions>
       <CardActions>
         <Typography>{props.item.title}</Typography>
         <Button
           color="primary"
-          disabled={props.item.inCart}
+          disabled={isAddedToCart(props.item.id)}
           onClick={() => props.addToCart(props.item.id)}
           variant="contained"
         >
@@ -73,6 +79,5 @@ const Product = (props) => {
     </Card>
   );
 };
-
 
 export default Product;

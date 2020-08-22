@@ -64,7 +64,7 @@ const NavBar = () => {
           <Typography className={classes.title} variant="h5">
             MPS
           </Typography>
-          <Link
+          <Link to="/"
             className={clsx(
               classes.menuButton,
               classes.menuItemColor,

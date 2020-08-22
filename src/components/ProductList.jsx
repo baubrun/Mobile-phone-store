@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { data } from "../data";
 import {useSelector, useDispatch} from "react-redux"
 import {getProducts, productsState, updateProducts} from "../app/productsSlice"
-import { addCartItem,  } from "../app/cartSlice";
+import { addCartItem, getCart } from "../app/cartSlice";
 
 
 
@@ -29,9 +29,9 @@ const ProductList = () => {
     const found = items.find(item => item.id === id)
     const copyFound = {...found}
     copyFound.inCart = true
-    console.log('copyFound :>> ', copyFound);
+    // console.log('copyFound :>> ', copyFound);
     dispatch(addCartItem(copyFound))
-    dispatch(updateProducts(copyFound))
+    // dispatch(updateProducts(copyFound))
   }
 
 

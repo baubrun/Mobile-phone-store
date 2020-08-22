@@ -12,6 +12,8 @@ export const cartSlice = createSlice({
         total: 0,
     },
     reducers: {
+        getCart: state => state.items,
+        getSubTotal: state => state.SubTotal,
         getTotal: state => state.total,
         addCartItem: (state, action) => {
             state.items = [
@@ -23,7 +25,9 @@ export const cartSlice = createSlice({
 
 export const {
     addCartItem,
-    getTotal
+    getTotal,
+    getCart,
+    getSubTotal,
 } = cartSlice.actions
 export const cartState = state => state.cart
 export default cartSlice.reducer;
