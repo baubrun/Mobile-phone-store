@@ -13,6 +13,12 @@ export const theme = createMuiTheme({
             dark: '#005662',
             contrastText: '#fff',
         },
+        secondary: {
+            light: '#f05d43',
+            main: '#b72919',
+            dark: '#800000',
+            contrastText: '#fff',
+        }
     },
     typography: {
         fontFamily: [
