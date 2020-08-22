@@ -8,6 +8,7 @@ import { data } from "../data";
 import {useSelector, useDispatch} from "react-redux"
 
 import {getProducts, productsState} from "../app/productsSlice"
+import { addCartItem,  } from "../app/cartSlice";
 
 
 
@@ -21,12 +22,23 @@ const ProductList = () => {
     setItems(products)
   }, [products])
 
+
+  const addToCart = (id) => {
+    const found = items.find(item => item.id === id)
+    dispatch(addCartItem(found))
+  }
+
+
   return (
     <>
       <Title title="PHONES" />
       <Grid container direction="row" justify="center" alignItems="center">
         {items.map((p, idx) => {
-          return <Product item={p} key={idx} />;
+          return <Product
+          addToCart={addToCart} 
+          item={p} 
+          key={idx} 
+          />;
         })}
       </Grid>
     </>

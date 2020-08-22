@@ -6,18 +6,16 @@ import {
 export const productsSlice = createSlice({
     name: "products",
     initialState: {
-        values: {
-            productDetail: {},
-            products: [],
+        productDetail: {},
+        products: [],
 
-        }
     },
     reducers: {
         getProductDetail: (state, action) => {
-            state.values.productDetail = state.products.find(item => item.id === action.payload)
+            state.productDetail = state.products.find(item => item.id === action.payload)
         },
         getProducts: (state, action) => {
-            state.values.products = action.payload
+            state.products = action.payload
         }
 
     }
@@ -27,5 +25,5 @@ export const {
     getProducts,
     getProductDetail
 } = productsSlice.actions
-export const productsState = state => state.products.values
+export const productsState = state => state.products
 export default productsSlice.reducer;

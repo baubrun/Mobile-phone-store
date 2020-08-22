@@ -24,17 +24,27 @@ const useStyles = makeStyles({
   cardStyle: {
     margin: "2em",
   },
-  iconColor: {
-    color: "#fff",
-    fontSize: "2em",
-    "&:hover": {
-      variant: "outlined"
-    }
-  },
+  // iconColor: {
+  //   // color: "#fff",
+  //   fontSize: "2em",
+  //   "&:hover": {
+  //     color: "primary",
+  //   },
+  // },
 });
 
 const Product = (props) => {
   const classes = useStyles();
+  // const dispatch = useDispatch()
+  // const {products} = useSelector(productsState)
+  // const [items, setItems] = useState([])
+
+  // useEffect(() => {
+  //   dispatch(getProductDetail(2))
+  //   setItems(products)
+  // }, [products])
+
+
   return (
     <Card className={clsx(classes.root, classes.cardStyle)}>
       <CardActionArea>
@@ -45,12 +55,21 @@ const Product = (props) => {
       </CardActionArea>
       <CardActions>
         <Typography>{props.item.title}</Typography>
-        <Button variant="contained" color="primary">
-          <IconButton className={classes.iconColor}>
-            <RiMoneyDollarCircleLine />
+
+        <Button 
+        color="primary" 
+        disabled={props.item.inCart}
+        // onClick={() => props.addToCart(props.id)}
+        onClick={() => props.addToCart(props.item.id)}
+        variant="contained" 
+        >
+          <IconButton  className={classes.iconColor}
+          >
+            <RiMoneyDollarCircleLine color="white"/>
           </IconButton>
-          <Typography>{props.item.price}</Typography>
+          <Typography >{props.item.price}</Typography>
         </Button>
+
       </CardActions>
     </Card>
   );

@@ -12,12 +12,15 @@ export const cartSlice = createSlice({
         total: 0,
     },
     reducers: {
-        getTotal: state => state.total
+        getTotal: state => state.total,
+        addCartItem: (state, action) => {
+            state.items = [...state.items, action.payload]
+        }
     }
 })
 
 export const {
-    getItems,
+    addCartItem,
     getTotal
 } = cartSlice.actions
 export const cartState = state => state.cart
