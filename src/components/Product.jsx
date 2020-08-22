@@ -10,6 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import { RiShoppingCartFill, RiMoneyDollarCircleLine } from "react-icons/ri";
 
 import { data } from "../data";
@@ -22,6 +23,11 @@ const useStyles = makeStyles({
     height: 400,
     width: 400,
   },
+  cardStyle: {
+    display: "inline-block",
+    verticalAlign: "top",
+    margin: "3em",
+  },
 });
 
 const Product = () => {
@@ -32,7 +38,7 @@ const Product = () => {
     <>
       {data.map((d, idx) => {
         return (
-          <Card key={idx} className={classes.root}>
+          <Card key={idx} className={clsx(classes.root, classes.cardStyle)}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
@@ -42,14 +48,12 @@ const Product = () => {
                 <Typography>{d.info}</Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
-              <Box >
-                <Typography>{d.title}</Typography>
-                <IconButton>
-                  <RiMoneyDollarCircleLine />
-                </IconButton>
-                <Typography>{d.price}</Typography>
-              </Box>
+            <CardActions disableSpacing>
+              <Typography>{d.title}</Typography>
+              <IconButton>
+                <RiMoneyDollarCircleLine />
+              </IconButton>
+              <Typography>{d.price}</Typography>
             </CardActions>
           </Card>
         );
