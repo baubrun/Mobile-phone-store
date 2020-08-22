@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 import {useSelector} from "react-redux"
-
+import {cartState} from "../app/cartSlice"
 
 
 const Cart = () => {
-    const cart = useSelector()
+    const cart = useSelector(cartState)
+
+
     return (
         <div>
-            Cart
+            {cart.total}
         </div>
     )
 }
