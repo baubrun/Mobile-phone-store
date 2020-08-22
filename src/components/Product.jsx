@@ -11,8 +11,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
-
 import { getProductDetail, productsState } from "../app/productsSlice";
+import styled from "styled-components";
 
 const useStyles = makeStyles({
   root: {
@@ -26,15 +26,15 @@ const useStyles = makeStyles({
     margin: "2em",
   },
   inCart: {
-    marginLeft: "auto",
+    // backgroundColor: "red",
   },
 });
 
 const Product = (props) => {
   const classes = useStyles();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   // const {products} = useSelector(productsState)
-  // const [items, setItems] = useState([])
+  const [item, setItem] = useState([])
 
   // useEffect(() => {
   //   dispatch(getProductDetail(2))
@@ -50,13 +50,11 @@ const Product = (props) => {
         />
       </CardActionArea>
       {props.item.inCart && (
-        <CardActions className={classes.inCart}>
-          <Button>
+        <CardActions>
             <IconButton color="primary">
               <RiShoppingCartFill />
             </IconButton>
-          </Button>
-          </CardActions>
+        </CardActions>
       )}
       <CardActions>
         <Typography>{props.item.title}</Typography>
@@ -75,5 +73,6 @@ const Product = (props) => {
     </Card>
   );
 };
+
 
 export default Product;
