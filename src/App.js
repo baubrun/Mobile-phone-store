@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./mui-config";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import "./App.css"
 
 
 import ProductList from "./components/ProductList";
