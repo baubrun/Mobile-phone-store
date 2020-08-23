@@ -58,10 +58,14 @@ const Details = () => {
   const classes = useStyles();
   const [cartItems, setCartItems] = useState([]);
   const { items } = useSelector(cartState);
+  const [isInCart, setIsInCart] = useState(false)
 
   useEffect(() => {
     setCartItems(items);
   }, []);
+
+
+
 
 
   const isAddedToCart = (id) => {
@@ -70,12 +74,8 @@ const Details = () => {
   };
 
   const addToCart = (id) => {
-    // console.log('items :>> ', items);
-    // const found = items.find((item) => item.id === id);
-    // const copyFound = { ...found };
-    // copyFound.inCart = true;
-    // console.log('copyFound :>> ', copyFound);
-    // dispatch(addCartItem(copyFound));
+        setIsInCart(true)
+      dispatch(addCartItem(item));
   };
 
   useEffect(() => {
@@ -101,9 +101,9 @@ const Details = () => {
           <Button variant="contained" color="primary" size="large">
             <Typography variant="h6">Continue Shopping</Typography>
           </Button>
-          {!isAddedToCart(item.id) && ( 
+          {!isAddedToCart(item.id) && !isInCart && ( 
           <IconButton 
-            onClick={() => addToCart(item.id)}
+            onClick={() => addToCart()}
             >
             <Tooltip enterDelay={0} title="Add to cart">
               <BiAddToQueue className={classes.addIcon} />

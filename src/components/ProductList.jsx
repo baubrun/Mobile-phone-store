@@ -28,11 +28,8 @@ const ProductList = () => {
 
   const addToCart = (id) => {
     const found = items.find((item) => item.id === id);
-    const copyFound = { ...found };
-    copyFound.inCart = true;
-    // console.log('copyFound :>> ', copyFound);
-    dispatch(addCartItem(copyFound));
-    // dispatch(updateProducts(copyFound))
+      dispatch(addCartItem(found));
+    
   };
 
   return (
