@@ -64,7 +64,7 @@ const NavBar = () => {
           <Typography className={classes.title} variant="h5">
             MPS
           </Typography>
-          <Link to="/"
+          {/* <Link to="/"
             className={clsx(
               classes.menuButton,
               classes.menuItemColor,
@@ -75,7 +75,7 @@ const NavBar = () => {
           >
             <Typography
             variant="h5">PRODUCTS</Typography>
-          </Link>
+          </Link> */}
           <Link to="/cart">
           <IconButton
           className={clsx(classes.navItem, classes.menuItemColor )}>

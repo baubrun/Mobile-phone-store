@@ -11,40 +11,72 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { productsState, resetProductDetail } from "../app/productsSlice";
 import { Link } from "react-router-dom";
 import { BiAddToQueue } from "react-icons/bi";
-import {theme} from "../mui-config"
+import { theme } from "../mui-config";
+import clsx from "clsx";
+import Tooltip from "@material-ui/core/Tooltip";
+import {cartState, addCartItem } from "../app/cartSlice";
+import {isAddedToCart} from "./utils"
 
 const useStyles = makeStyles({
-  card: {
+  img: {
     margin: "auto",
     [theme.breakpoints.down("xs")]: {
       maxWidth: 375,
     },
-  },
-
-  media: {
-    height: 375,
-    width: 375,
-    margin: "auto",
+    [theme.breakpoints.up("xs")]: {
+      maxWidth: 500,
+      maxHeight: 500,
+    },
   },
   info: {
-    // padding: "1rem 10rem",
+    fontSize: "1.2rem",
+    color: "grey",
   },
   titlePrice: {
     display: "flex",
     justifyContent: "space-around",
   },
+  addIcon: {
+    color: theme.palette.secondary.light,
+    fontSize: "3rem",
+  },
+  icons: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
 });
+
 const Details = () => {
   const { productDetail } = useSelector(productsState);
   const [item, setItem] = useState({});
   const dispatch = useDispatch();
   const classes = useStyles();
+  const [cartItems, setCartItems] = useState([]);
+  const { items } = useSelector(cartState);
+
+  useEffect(() => {
+    setCartItems(items);
+  }, []);
+
+
+  const isAddedToCart = (id) => {
+    const found = cartItems.find((i) => i.id === id);
+    return found;
+  };
+
+  const addToCart = (id) => {
+    // console.log('items :>> ', items);
+    // const found = items.find((item) => item.id === id);
+    // const copyFound = { ...found };
+    // copyFound.inCart = true;
+    // console.log('copyFound :>> ', copyFound);
+    // dispatch(addCartItem(copyFound));
+  };
 
   useEffect(() => {
     setItem(productDetail);
@@ -55,29 +87,30 @@ const Details = () => {
 
   return (
     <>
-      {/* <Grid container direction="row" justify="center" alignItems="center"> */}
-      {/* <Grid item> */}
       <Container>
-        <Card className={classes.card}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={item.img}
-            />
-            <CardContent>
-              <Box className={classes.titlePrice}>
-                <Typography variant="h5">{item.title}</Typography>
-                <Typography variant="h5">${item.price}</Typography>
-              </Box>
-              <Typography className={classes.info}>{item.info}</Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Box className={clsx(classes.img)}>
+          <img src={item.img} />
+        </Box>
+        <Box className={classes.titlePrice}>
+          <Typography variant="h4">{item.title}</Typography>
+          <Typography variant="h4">${item.price}</Typography>
+        </Box>
+        <Typography className={classes.info}>{item.info}</Typography>
 
-        <IconButton>
-          <BiAddToQueue />
-        </IconButton>
+        <Box className={classes.icons}>
+          <Button variant="contained" color="primary" size="large">
+            <Typography variant="h6">Continue Shopping</Typography>
+          </Button>
+          {!isAddedToCart(item.id) && ( 
+          <IconButton 
+            onClick={() => addToCart(item.id)}
+            >
+            <Tooltip enterDelay={0} title="Add to cart">
+              <BiAddToQueue className={classes.addIcon} />
+            </Tooltip>
+          </IconButton>
+            )}  
+        </Box>
       </Container>
     </>
   );

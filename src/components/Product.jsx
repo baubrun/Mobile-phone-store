@@ -40,18 +40,25 @@ const useStyles = makeStyles({
   notInCart: {
     visibility: "hidden",
   },
+  buttons: {
+    display: "flex",
+    justifyContent: "space-between"
+  }
 });
 
 const Product = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { items } = useSelector(cartState);
+  const {items} = useSelector(cartState);
   // const [item, setItem] = useState([])
+
+
 
   const isAddedToCart = (id) => {
     const found = items.find((i) => i.id === id);
     return found;
   };
+
 
   return (
     <Card className={clsx(classes.root, classes.cardStyle)}>
@@ -74,7 +81,7 @@ const Product = (props) => {
           <RiShoppingCartFill />
         </IconButton>
       </CardActions>
-      <CardActions>
+      <CardActions className={classes.buttons} >
         <Typography>{props.item.title}</Typography>
         <Button
           color="primary"
