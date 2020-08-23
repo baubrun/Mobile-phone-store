@@ -11,20 +11,28 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetail, productsState } from "../app/productsSlice";
+import { setProductDetail, productsState } from "../app/productsSlice";
 import styled from "styled-components";
 import { addCartItem, getCart, cartState } from "../app/cartSlice";
+import { Link } from "react-router-dom";
+import {theme} from "../mui-config"
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 400,
+    maxWidth: 375,
   },
   media: {
-    height: 400,
-    width: 400,
+    height: 375,
+    width: 375,
   },
   cardStyle: {
-    margin: "2em",
+    [theme.breakpoints.down('md')]: {
+      margin: "2em 0"
+    },
+    [theme.breakpoints.up('sm')]: {
+      margin: "1em",
+    },
+
   },
   inCart: {
     visibility: "visible",
@@ -36,7 +44,7 @@ const useStyles = makeStyles({
 
 const Product = (props) => {
   const classes = useStyles();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { items } = useSelector(cartState);
   // const [item, setItem] = useState([])
 
@@ -48,10 +56,14 @@ const Product = (props) => {
   return (
     <Card className={clsx(classes.root, classes.cardStyle)}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={require(`../images/${props.item.img}`)}
-        />
+        <Link to="/details">
+          <CardMedia 
+            className={classes.media}
+            component="img"
+            image={require(`../images/${props.item.img}`)}
+            onClick={() => dispatch(setProductDetail(props.item.id))}
+          />
+        </Link>
       </CardActionArea>
       <CardActions
         className={clsx(
