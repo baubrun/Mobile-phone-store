@@ -14,13 +14,12 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { productsState, resetProductDetail } from "../app/productsSlice";
+import {cartState, addCartItem } from "../app/cartSlice";
 import { Link } from "react-router-dom";
 import { BiAddToQueue } from "react-icons/bi";
 import { theme } from "../mui-config";
 import clsx from "clsx";
 import Tooltip from "@material-ui/core/Tooltip";
-import {cartState, addCartItem } from "../app/cartSlice";
-import {isAddedToCart} from "./utils"
 
 const useStyles = makeStyles({
   img: {
@@ -98,9 +97,13 @@ const Details = () => {
         <Typography className={classes.info}>{item.info}</Typography>
 
         <Box className={classes.icons}>
+        <Link to="/" style={{textDecoration: "none"}}>
+
           <Button variant="contained" color="primary" size="large">
             <Typography variant="h6">Continue Shopping</Typography>
           </Button>
+          </Link>
+
           {!isAddedToCart(item.id) && !isInCart && ( 
           <IconButton 
             onClick={() => addToCart()}
