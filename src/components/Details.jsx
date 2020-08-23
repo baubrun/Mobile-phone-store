@@ -8,7 +8,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { productsState, resetProductDetail } from "../app/productsSlice";
-import { cartState, addCartItem } from "../app/cartSlice";
+import { cartState, addCartItem, getSubTotal } from "../app/cartSlice";
 import { Link } from "react-router-dom";
 import { BiAddToQueue } from "react-icons/bi";
 import { theme } from "../mui-config";
@@ -69,6 +69,7 @@ const Details = () => {
   const addToCart = (id) => {
     setIsInCart(true);
     dispatch(addCartItem(item));
+    // dispatch(getSubTotal());
   };
 
   useEffect(() => {
