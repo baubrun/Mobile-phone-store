@@ -26,11 +26,11 @@ const useStyles = makeStyles({
     width: 375,
   },
   cardStyle: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('xs')]: {
       margin: "2em 0"
     },
-    [theme.breakpoints.up('sm')]: {
-      margin: "1em",
+    [theme.breakpoints.up('xs')]: {
+      margin: "auto",
     },
 
   },
@@ -49,7 +49,7 @@ const Product = (props) => {
   // const [item, setItem] = useState([])
 
   const isAddedToCart = (id) => {
-    const found = items.includes((i) => i.id === id);
+    const found = items.find((i) => i.id === id);
     return found;
   };
 
@@ -60,7 +60,7 @@ const Product = (props) => {
           <CardMedia 
             className={classes.media}
             component="img"
-            image={require(`../images/${props.item.img}`)}
+            image={props.item.img}
             onClick={() => dispatch(setProductDetail(props.item.id))}
           />
         </Link>
