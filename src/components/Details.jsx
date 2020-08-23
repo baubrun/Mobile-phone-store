@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Title from "./Title";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
+
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
@@ -14,12 +8,13 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { productsState, resetProductDetail } from "../app/productsSlice";
-import {cartState, addCartItem } from "../app/cartSlice";
+import { cartState, addCartItem } from "../app/cartSlice";
 import { Link } from "react-router-dom";
 import { BiAddToQueue } from "react-icons/bi";
 import { theme } from "../mui-config";
 import clsx from "clsx";
 import Tooltip from "@material-ui/core/Tooltip";
+
 
 const useStyles = makeStyles({
   img: {
@@ -48,6 +43,9 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
   },
+  tooltip: {
+    fontSize: "2em"
+  }
 });
 
 const Details = () => {
@@ -57,15 +55,11 @@ const Details = () => {
   const classes = useStyles();
   const [cartItems, setCartItems] = useState([]);
   const { items } = useSelector(cartState);
-  const [isInCart, setIsInCart] = useState(false)
+  const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
     setCartItems(items);
   }, []);
-
-
-
-
 
   const isAddedToCart = (id) => {
     const found = cartItems.find((i) => i.id === id);
@@ -73,8 +67,8 @@ const Details = () => {
   };
 
   const addToCart = (id) => {
-        setIsInCart(true)
-      dispatch(addCartItem(item));
+    setIsInCart(true);
+    dispatch(addCartItem(item));
   };
 
   useEffect(() => {
@@ -97,22 +91,19 @@ const Details = () => {
         <Typography className={classes.info}>{item.info}</Typography>
 
         <Box className={classes.icons}>
-        <Link to="/" style={{textDecoration: "none"}}>
-
-          <Button variant="contained" color="primary" size="large">
-            <Typography variant="h6">Continue Shopping</Typography>
-          </Button>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button variant="contained" color="primary" size="large">
+              <Typography variant="h6">Continue Shopping</Typography>
+            </Button>
           </Link>
 
-          {!isAddedToCart(item.id) && !isInCart && ( 
-          <IconButton 
-            onClick={() => addToCart()}
-            >
-            <Tooltip enterDelay={0} title="Add to cart">
-              <BiAddToQueue className={classes.addIcon} />
+          {!isAddedToCart(item.id) && !isInCart && (
+            <Tooltip className={classes.tooltip} enterDelay={0} title="ADD TO CART">
+              <IconButton onClick={() => addToCart()}>
+                <BiAddToQueue className={classes.addIcon} />
+              </IconButton>
             </Tooltip>
-          </IconButton>
-            )}  
+          )}
         </Box>
       </Container>
     </>

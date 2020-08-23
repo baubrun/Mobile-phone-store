@@ -1,9 +1,7 @@
 import {
     createMuiTheme
 } from '@material-ui/core/styles';
-import {
-    makeStyles
-} from "@material-ui/core/styles";
+
 
 export const theme = createMuiTheme({
     palette: {
@@ -26,6 +24,14 @@ export const theme = createMuiTheme({
             'sans-serif',
         ].join(','),
     },
+    overrides: {
+        MuiTooltip: {
+          tooltip: {
+            fontSize: "1rem",
+            letterSpacing: "0.2rem"
+          }
+        }
+      }    
 });
 
 
