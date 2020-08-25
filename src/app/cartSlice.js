@@ -10,6 +10,8 @@ export const cartSlice = createSlice({
         subtotal: 0,
         tax: 0,
         total: 0,
+        modalOpen: true,
+        modalProduct: {},
     },
     reducers: {
         getCart: state => state.items,
@@ -41,7 +43,16 @@ export const cartSlice = createSlice({
             let price = item.price * item.count
             item.total = price
             state.items = [...tempItems]
+        },
+        toggleModal: (state) =>{
+            state.modalOpen = !state.modalOpen
+        },
+        openModal: (state, action) =>{
+            state.modalOpen = true
+            state.modalProduct = state.products.find(item => item.id === action.payload)
         }
+        
+
     }
 })
 
@@ -50,6 +61,8 @@ export const {
     getTotal,
     getCart,
     getSubTotal,
+    toggleModal,
+    openModal,
 } = cartSlice.actions
 export const cartState = state => state.cart
 export default cartSlice.reducer;

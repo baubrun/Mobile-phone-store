@@ -6,6 +6,7 @@ import {
 export const productsSlice = createSlice({
     name: "products",
     initialState: {
+
         productDetail: {},
         products: [],
 
@@ -20,7 +21,7 @@ export const productsSlice = createSlice({
         getProducts: (state, action) => {
             state.products = action.payload
         },
-    }
+}
 })
 
 export const {

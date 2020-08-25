@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { productsState, resetProductDetail } from "../app/productsSlice";
+import { productsState, resetProductDetail, toggleModal, openModal } from "../app/productsSlice";
 import { cartState, addCartItem, getSubTotal } from "../app/cartSlice";
 import { Link } from "react-router-dom";
 import { BiAddToQueue } from "react-icons/bi";
