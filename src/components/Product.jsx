@@ -16,6 +16,7 @@ import { addCartItem, getCart, cartState } from "../app/cartSlice";
 import { Link } from "react-router-dom";
 import {theme} from "../mui-config"
 
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 375,

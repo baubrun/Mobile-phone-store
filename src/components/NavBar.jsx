@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles, fade } from "@material-ui/core/styles";
-import Badge from '@material-ui/core/Badge';
+import Badge from "@material-ui/core/Badge";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "../mui-config";
 import { RiShoppingCartFill } from "react-icons/ri";
@@ -13,7 +13,8 @@ import { MdSmartphone } from "react-icons/md";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { cartState } from "../app/cartSlice";
-import {useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
+
 
 
 const useStyles = makeStyles({
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
   },
   navItem: {
     backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover" : {
+    "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
   },
@@ -43,28 +44,28 @@ const useStyles = makeStyles({
     marginLeft: theme.spacing(2),
     width: "80%",
   },
-
 });
 
 const NavBar = () => {
   const classes = useStyles();
-  const {items} = useSelector(cartState)
+  const { items } = useSelector(cartState);
+  console.log('items :>> ', items);
 
 
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
-      <AppBar position="fixed">
-        <Toolbar>
-          <Link to="/">
-            <IconButton className={classes.menuItemColor}>
-              <MdSmartphone />
-            </IconButton>
-          </Link>
-          <Typography className={classes.title} variant="h5">
-            MPS
-          </Typography>
-          {/* <Link to="/"
+        <AppBar position="fixed">
+          <Toolbar>
+            <Link to="/">
+              <IconButton className={classes.menuItemColor}>
+                <MdSmartphone />
+              </IconButton>
+            </Link>
+            <Typography className={classes.title} variant="h5">
+              MPS
+            </Typography>
+            <Link to="/"
             className={clsx(
               classes.menuButton,
               classes.menuItemColor,
@@ -75,18 +76,20 @@ const NavBar = () => {
           >
             <Typography
             variant="h5">PRODUCTS</Typography>
-          </Link> */}
-          <Link to="/cart">
-          <IconButton
-          className={clsx(classes.navItem, classes.menuItemColor )}>
-            <Badge badgeContent={items.length} color="secondary">
-            <RiShoppingCartFill />
-            </Badge>
-          </IconButton> 
           </Link>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.offset} />
+
+            <Link to="/cart">
+              <IconButton
+                className={clsx(classes.navItem, classes.menuItemColor)}
+              >
+                <Badge badgeContent={items.length} color="secondary">
+                  <RiShoppingCartFill />
+                </Badge>
+              </IconButton>
+            </Link>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.offset} />
       </ThemeProvider>
     </div>
   );
