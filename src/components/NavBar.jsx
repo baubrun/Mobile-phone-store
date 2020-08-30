@@ -48,7 +48,6 @@ const useStyles = makeStyles({
 const NavBar = () => {
   const classes = useStyles();
   const { items } = useSelector(cartState);
-  console.log('items :>> ', items);
 
 
   return (

@@ -21,7 +21,6 @@ const ProductList = () => {
   }, []);
 
   useEffect(() => {
-    // dispatch(getProducts(data))
     setItems(products);
   }, [products]);
 
@@ -37,8 +36,8 @@ const ProductList = () => {
       <Grid container direction="row" justify="center" alignItems="center">
         {items.map((p, idx) => {
           return (
-            <Grid item xs={12} md={6} >
-              <Product addToCart={addToCart} item={p} key={idx} />
+            <Grid key={idx} item xs={12} md={6} >
+              <Product addToCart={addToCart} item={p} />
             </Grid>
           );
         })}

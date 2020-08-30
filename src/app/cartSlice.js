@@ -7,7 +7,6 @@ export const cartSlice = createSlice({
     subTotal: 0,
     tax: 0,
     total: 0,
-    isModalOpen: true,
     modalProduct: {},
     quantity: 0,
   },
@@ -15,6 +14,7 @@ export const cartSlice = createSlice({
     addCartItem: (state, action) => {
       state.items = [...state.items, action.payload];
     },
+    clearCart: state => {state.items = []},
     getSubTotal: (state) => {
       let { subTotal, quantity } = state.items.reduce(
         (cartSubTotal, cartItem) => {
@@ -29,7 +29,6 @@ export const cartSlice = createSlice({
           quantity: 0,
         }
       );
-    //   subTotal = parseFloat(subTotal.toFixed(2));
       state.subTotal = subTotal;
       state.quantity = quantity;
     },
@@ -66,6 +65,7 @@ export const cartSlice = createSlice({
 
 export const {
   addCartItem,
+  clearCart,
   getCart,
   getSubTotal,
   getTax,

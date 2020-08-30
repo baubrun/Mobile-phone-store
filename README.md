@@ -1,3 +1,3 @@
 A mobile phone store.
 
-Technologies: Material-UI, PayPal, React, and Redux
+Technologies: Material-UI, React, and Redux

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CartContainer = () => {
+const CartContainer = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { items, subTotal, tax, total } = useSelector(cartState);
@@ -31,6 +31,9 @@ const CartContainer = () => {
     dispatch(getTax());
     dispatch(getTotal());
   }, [items]);
+
+
+
 
   if (items.length === 0) {
     return (
@@ -72,6 +75,7 @@ const CartContainer = () => {
           </Typography>
         </Grid>
       </Grid>
+
     </>
   );
 };
