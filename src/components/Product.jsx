@@ -10,10 +10,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
-import { setProductDetail, productsState } from "../app/productsSlice";
-import { addCartItem, getCart,  } from "../app/cartSlice";
+import { setProductDetail, } from "../app/productsSlice";
+import { cartState, } from "../app/cartSlice";
 import {theme} from "../mui-config"
-
+import {Link} from "react-router-dom"
 
 const useStyles = makeStyles({
   root: {
@@ -49,7 +49,6 @@ const Product = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const {items} = useSelector(cartState);
-  // const [item, setItem] = useState([])
 
 
 
