@@ -15,10 +15,6 @@ export const cartSlice = createSlice({
     addCartItem: (state, action) => {
       state.items = [...state.items, action.payload];
     },
-    clearCart: (state) => {
-      state.items = [];
-    },
-    getCart: (state) => state.items,
     getSubTotal: (state) => {
       let { subTotal, quantity } = state.items.reduce(
         (cartSubTotal, cartItem) => {
@@ -33,11 +29,16 @@ export const cartSlice = createSlice({
           quantity: 0,
         }
       );
-      subTotal = parseFloat(subTotal.toFixed(2));
+    //   subTotal = parseFloat(subTotal.toFixed(2));
       state.subTotal = subTotal;
       state.quantity = quantity;
     },
-    getTotal: (state) => state.total,
+    getTax: (state) => {
+      state.tax = state.subTotal * 0.14975;
+    },
+    getTotal: (state) => {
+      state.total = state.subTotal + state.tax;
+    },
     removeCartItem: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
@@ -65,10 +66,10 @@ export const cartSlice = createSlice({
 
 export const {
   addCartItem,
-  clearCart,
-  getSubTotal,
-  getTotal,
   getCart,
+  getSubTotal,
+  getTax,
+  getTotal,
   removeCartItem,
   toggleCartItemQty,
 } = cartSlice.actions;

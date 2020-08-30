@@ -10,7 +10,6 @@ import NotFound from "./components/NotFound";
 import Store from "./components/Store";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
-import Modal from "./components/Modal";
 
 import { useSelector } from "react-redux";
 import { productsState } from "./app/productsSlice";
@@ -37,7 +36,6 @@ const App = () => {
           <Route path="/store" component={Store} />
           <Route path="*" component={NotFound} />
         </Switch>
-        <Modal />
       </BrowserRouter>
     </ThemeProvider>
   );
