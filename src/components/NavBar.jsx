@@ -2,7 +2,6 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles, fade } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
@@ -13,7 +12,7 @@ import { MdSmartphone } from "react-icons/md";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { cartState } from "../app/cartSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, } from "react-redux";
 
 
 

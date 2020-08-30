@@ -7,9 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getProducts,
   productsState,
-  updateProducts,
 } from "../app/productsSlice";
-import { addCartItem, getCart } from "../app/cartSlice";
+import { addCartItem,  } from "../app/cartSlice";
 
 const ProductList = () => {
   const dispatch = useDispatch();

@@ -7,7 +7,6 @@ import "./App.css"
 import ProductList from "./components/ProductList";
 import Details from "./components/Details";
 import NotFound from "./components/NotFound";
-import Store from "./components/Store";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 
@@ -33,7 +32,6 @@ const App = () => {
           <Route path="/details">
             {!hasProductDetail(productDetail)? <Redirect to="/" />: <Details />}
           </Route>
-          <Route path="/store" component={Store} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

@@ -7,13 +7,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { RiMoneyDollarCircleLine, RiShoppingCartFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { setProductDetail, productsState } from "../app/productsSlice";
-import { addCartItem, getCart, cartState } from "../app/cartSlice";
-import { Link } from "react-router-dom";
+import { addCartItem, getCart,  } from "../app/cartSlice";
 import {theme} from "../mui-config"
 
 
